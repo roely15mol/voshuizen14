@@ -47,15 +47,13 @@ export function ServiceCard({ name, description, icon, active }: ServiceCardProp
 
   return (
     <div className="service-card-inactive p-4 cursor-default">
-      <div className="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-light text-accent">
+      <div className="mb-2.5 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent/15 to-accent/5 text-accent">
         {iconElement}
       </div>
       <h3 className="text-sm font-semibold">{name}</h3>
-      <p className="mt-0.5 text-xs text-muted">{description}</p>
+      <p className="mt-0.5 text-xs text-muted leading-relaxed">{description}</p>
       {!active && (
-        <span className="mt-2 inline-block rounded-full bg-accent-light px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase text-accent">
-          Binnenkort
-        </span>
+        <span className="accent-badge mt-2">Binnenkort</span>
       )}
     </div>
   );
