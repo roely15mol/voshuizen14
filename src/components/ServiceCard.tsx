@@ -42,19 +42,15 @@ const icons: Record<string, React.ReactNode> = {
   ),
 };
 
-export function ServiceCard({ name, description, icon, active }: ServiceCardProps) {
+export function ServiceCard({ name, icon }: ServiceCardProps) {
   const iconElement = icons[icon] || icons.activity;
 
   return (
-    <div className="service-card-inactive p-4 cursor-default">
-      <div className="mb-2.5 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent/15 to-accent/5 text-accent">
+    <div className="service-card-inactive p-3 cursor-default text-center">
+      <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent/70">
         {iconElement}
       </div>
-      <h3 className="text-sm font-semibold">{name}</h3>
-      <p className="mt-0.5 text-xs text-muted leading-relaxed">{description}</p>
-      {!active && (
-        <span className="accent-badge mt-2">Binnenkort</span>
-      )}
+      <p className="text-xs font-medium">{name}</p>
     </div>
   );
 }

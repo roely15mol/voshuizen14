@@ -30,42 +30,35 @@ function WidgetFallback() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
 
         {/* Header */}
-        <header className="mb-16 text-center animate-entrance animate-entrance-1">
-          <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 shadow-lg shadow-accent/10 ring-1 ring-accent/10">
-            <svg className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
-          </div>
-          <h1 className="font-display text-5xl sm:text-7xl font-semibold tracking-tight mb-2">
-            Voshuizen <span className="bg-gradient-to-r from-accent to-[#d4944e] bg-clip-text text-transparent">14</span>
+        <header className="mb-10 text-center animate-entrance animate-entrance-1">
+          <h1 className="font-display text-6xl sm:text-8xl font-bold tracking-tight mb-1">
+            Voshuizen{" "}
+            <span className="number-glow">14</span>
           </h1>
-          <p className="text-muted text-sm tracking-[0.2em] uppercase">
-            Welkom thuis
+          <p className="text-muted text-xs tracking-[0.3em] uppercase mt-2">
+            Lieren &middot; Welkom thuis
           </p>
         </header>
 
         {/* Info bar */}
-        <div className="mb-12 animate-entrance animate-entrance-2">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-muted">
+        <div className="mb-10 animate-entrance animate-entrance-2">
+          <div className="flex items-center justify-center gap-6 text-sm text-muted/80">
             <Clock />
-            <span className="hidden sm:inline text-accent/30">|</span>
+            <span className="text-accent/30">|</span>
             <WeatherWidget />
           </div>
         </div>
 
-        {/* Featured: News */}
-        <section className="mb-6 animate-entrance animate-entrance-3">
+        {/* News Hero */}
+        <section className="mb-8 animate-hero animate-entrance-3">
           <Suspense fallback={<WidgetFallback />}>
             <NewsWidget />
           </Suspense>
         </section>
-
-        {/* Golden divider */}
-        <div className="golden-divider mx-auto w-2/3 my-6 animate-entrance animate-entrance-3" />
 
         {/* Two-column grid */}
         <section className="mb-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -92,18 +85,17 @@ export default function Home() {
         </section>
 
         {/* Quick links */}
-        <section className="mb-14 animate-entrance animate-entrance-6">
+        <section className="mb-16 animate-entrance animate-entrance-6">
           <QuickLinks />
         </section>
 
+        {/* Golden line */}
+        <div className="golden-line mb-8 animate-entrance animate-entrance-7" />
+
         {/* Services grid */}
         <section className="animate-entrance animate-entrance-7">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px flex-1 bg-card-border" />
-            <h2 className="widget-label shrink-0">Services</h2>
-            <div className="h-px flex-1 bg-card-border" />
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <h2 className="widget-label text-center mb-6">Binnenkort beschikbaar</h2>
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
             {services.map((service) => (
               <ServiceCard key={service.name} {...service} />
             ))}
@@ -111,10 +103,9 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-24 pb-10 text-center">
-          <div className="golden-divider mx-auto w-16 mb-5" />
-          <p className="text-[0.65rem] text-muted/50 tracking-[0.25em] uppercase">
-            Voshuizen 14 &middot; Lieren
+        <footer className="mt-20 pb-8 text-center">
+          <p className="text-[0.55rem] text-muted/30 tracking-[0.3em] uppercase">
+            Voshuizen 14
           </p>
         </footer>
       </div>

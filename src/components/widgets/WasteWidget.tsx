@@ -1,19 +1,11 @@
-import { fetchWaste, wasteColors, wasteLabels } from "@/lib/waste";
-
-const wasteEmoji: Record<string, string> = {
-  gft: "🟢",
-  restafr: "⚫",
-  pap: "🔵",
-  pmd: "🟠",
-  bestafr: "🟣",
-};
+import { fetchWaste, wasteLabels } from "@/lib/waste";
 
 export default async function WasteWidget() {
   const waste = await fetchWaste();
 
   if (!waste) {
     return (
-      <div className="glass-card p-5 sm:p-6">
+      <div className="glass-card p-6">
         <p className="widget-label mb-4">Afval ophaaldag</p>
         <p className="text-muted">Niet beschikbaar</p>
       </div>
@@ -27,30 +19,23 @@ export default async function WasteWidget() {
   });
 
   const label = wasteLabels[waste.type] ?? waste.type;
-  const color = wasteColors[waste.type] ?? "text-foreground";
-  const emoji = wasteEmoji[waste.type] ?? "♻️";
+  const cardClass = `waste-card-${waste.type}`;
 
   return (
-    <div className="glass-card p-5 sm:p-6">
+    <div className={`waste-card ${cardClass} p-6`}>
       <p className="widget-label mb-4">Afval ophaaldag</p>
 
       {waste.isToday ? (
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{emoji}</span>
-          <div>
-            <p className="font-display text-lg font-semibold text-accent">
-              Vandaag aan de straat!
-            </p>
-            <p className={`text-sm font-medium ${color}`}>{label}</p>
-          </div>
+        <div>
+          <p className="font-display text-2xl font-bold text-accent mb-1">
+            Vandaag!
+          </p>
+          <p className="text-sm text-foreground/70">Zet de {label.toLowerCase()} aan de straat</p>
         </div>
       ) : (
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{emoji}</span>
-          <div>
-            <p className="capitalize">{formattedDate}</p>
-            <p className={`text-sm font-medium ${color}`}>{label}</p>
-          </div>
+        <div>
+          <p className="font-display text-lg font-semibold capitalize">{formattedDate}</p>
+          <p className="text-sm text-foreground/60 mt-1">{label}</p>
         </div>
       )}
     </div>

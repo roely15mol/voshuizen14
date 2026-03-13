@@ -1,6 +1,6 @@
 const links = [
   {
-    label: "Gemeente Apeldoorn",
+    label: "Gemeente",
     href: "https://www.apeldoorn.nl",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">
@@ -18,7 +18,7 @@ const links = [
     ),
   },
   {
-    label: "112 Meldingen",
+    label: "112",
     href: "https://www.112apeldoorn.nl",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">
@@ -27,7 +27,7 @@ const links = [
     ),
   },
   {
-    label: "Rijksoverheid",
+    label: "Overheid",
     href: "https://www.rijksoverheid.nl",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4">
@@ -39,22 +39,19 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <div className="glass-card p-5 sm:p-6">
-      <p className="widget-label mb-4">Handige linkjes</p>
-      <div className="flex flex-wrap gap-2">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-lift inline-flex items-center gap-2 rounded-xl bg-surface px-4 py-2.5 text-sm font-medium border border-card-border transition-colors hover:border-accent hover:text-accent"
-          >
-            {link.icon}
-            {link.label}
-          </a>
-        ))}
-      </div>
+    <div className="flex flex-wrap justify-center gap-3">
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-lift inline-flex items-center gap-2 rounded-full bg-white/[0.04] border border-white/[0.06] px-5 py-2.5 text-sm text-foreground/70 transition-all hover:text-accent"
+        >
+          {link.icon}
+          {link.label}
+        </a>
+      ))}
     </div>
   );
 }
