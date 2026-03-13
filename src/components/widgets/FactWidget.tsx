@@ -12,11 +12,12 @@ export default function FactWidget() {
   const fact = facts[index];
 
   return (
-    <div className="rounded-xl border border-card-border bg-card-bg p-5">
-      <p className="text-sm font-semibold uppercase tracking-wider text-muted">
-        Wist je dat?
-      </p>
-      <p className="mt-3">{fact}</p>
+    <div className="glass-card p-5 sm:p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-accent text-lg">&#9679;</span>
+        <p className="widget-label">Wist je dat?</p>
+      </div>
+      <p className="leading-relaxed">{fact}</p>
     </div>
   );
 }

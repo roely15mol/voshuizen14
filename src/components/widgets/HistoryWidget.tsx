@@ -16,28 +16,26 @@ export default async function HistoryWidget() {
     const fallbackFact = facts[fallbackIndex];
 
     return (
-      <div className="rounded-xl border border-card-border bg-card-bg p-5">
-        <h2 className="text-sm font-medium text-muted">
-          Vandaag in de geschiedenis
-        </h2>
-        <p className="mt-2 text-sm italic text-muted">
+      <div className="glass-card p-5 sm:p-6">
+        <p className="widget-label mb-4">Vandaag in de geschiedenis</p>
+        <p className="text-sm italic text-muted mb-2">
           Geen historische feiten gevonden voor vandaag.
         </p>
-        <p className="mt-2 text-foreground">{fallbackFact}</p>
+        <p className="leading-relaxed">{fallbackFact}</p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-xl border border-card-border bg-card-bg p-5">
-      <h2 className="text-sm font-medium text-muted">
-        Vandaag in de geschiedenis
-      </h2>
-      <ul className="mt-3 space-y-2">
+    <div className="glass-card p-5 sm:p-6">
+      <p className="widget-label mb-4">Vandaag in de geschiedenis</p>
+      <ul className="space-y-3">
         {events.map((event) => (
-          <li key={`${event.year}-${event.text}`} className="text-foreground">
-            <span className="font-semibold text-accent">{event.year}</span>
-            &mdash; {event.text}
+          <li key={`${event.year}-${event.text}`} className="flex gap-3">
+            <span className="shrink-0 font-display font-semibold text-accent tabular-nums">
+              {event.year}
+            </span>
+            <span className="text-sm leading-relaxed">{event.text}</span>
           </li>
         ))}
       </ul>

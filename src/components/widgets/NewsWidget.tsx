@@ -5,9 +5,9 @@ export default async function NewsWidget() {
 
   if (news.length === 0) {
     return (
-      <div className="rounded-xl border border-card-border bg-card-bg p-5">
-        <h2 className="text-sm font-medium text-muted">Laatste nieuws</h2>
-        <p className="mt-2 text-foreground">Niet beschikbaar</p>
+      <div className="news-card p-6">
+        <p className="widget-label">Laatste nieuws</p>
+        <p className="mt-3 text-muted">Niet beschikbaar</p>
       </div>
     );
   }
@@ -19,21 +19,28 @@ export default async function NewsWidget() {
   });
 
   return (
-    <div className="rounded-xl border border-card-border bg-card-bg p-6">
-      <h2 className="text-sm font-medium text-muted">Laatste nieuws</h2>
+    <div className="news-card p-6 sm:p-8">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="inline-block h-2 w-2 rounded-full bg-news-accent animate-pulse" />
+        <p className="widget-label !text-news-accent">Laatste nieuws</p>
+      </div>
 
       <a
         href={first.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 block text-xl font-semibold text-foreground hover:text-accent"
+        className="group block"
       >
-        {first.title}
+        <h2 className="font-display text-2xl sm:text-3xl font-semibold leading-tight tracking-tight transition-colors group-hover:text-accent">
+          {first.title}
+        </h2>
+        <p className="mt-2 text-sm text-muted">
+          NOS &middot; {firstTime}
+        </p>
       </a>
-      <p className="mt-1 text-sm text-muted">NOS {firstTime}</p>
 
       {rest.length > 0 && (
-        <div className="mt-4 border-t border-card-border pt-4 space-y-2">
+        <div className="mt-5 border-t border-card-border pt-4 space-y-3">
           {rest.map((item) => {
             const time = new Date(item.pubDate).toLocaleTimeString("nl-NL", {
               hour: "2-digit",
@@ -45,9 +52,10 @@ export default async function NewsWidget() {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-foreground hover:text-accent"
+                className="flex items-baseline gap-3 text-sm transition-colors hover:text-accent group"
               >
-                <span className="text-muted">NOS {time}</span> — {item.title}
+                <span className="shrink-0 text-xs text-muted tabular-nums">{time}</span>
+                <span className="group-hover:text-accent">{item.title}</span>
               </a>
             );
           })}

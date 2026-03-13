@@ -12,12 +12,14 @@ export default function QuoteWidget() {
   const quote = quotes[index];
 
   return (
-    <div className="rounded-xl border border-card-border bg-card-bg p-5">
-      <p className="text-sm font-semibold uppercase tracking-wider text-muted">
-        Spreuk van de dag
-      </p>
-      <p className="mt-3 italic">&ldquo;{quote.text}&rdquo;</p>
-      <p className="mt-2 text-sm text-muted">&mdash; {quote.attribution}</p>
+    <div className="glass-card p-5 sm:p-6 relative overflow-hidden">
+      <p className="widget-label mb-4">Spreuk van de dag</p>
+      <div className="relative quote-decoration pl-1">
+        <p className="font-display text-lg sm:text-xl italic leading-relaxed">
+          {quote.text}
+        </p>
+      </div>
+      <p className="mt-3 text-sm text-muted">&mdash; {quote.attribution}</p>
     </div>
   );
 }
