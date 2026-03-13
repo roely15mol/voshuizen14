@@ -1,6 +1,13 @@
+import { Suspense } from "react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { WeatherWidget } from "@/components/WeatherWidget";
 import { Clock } from "@/components/Clock";
+import NewsWidget from "@/components/widgets/NewsWidget";
+import QuoteWidget from "@/components/widgets/QuoteWidget";
+import HistoryWidget from "@/components/widgets/HistoryWidget";
+import FactWidget from "@/components/widgets/FactWidget";
+import WasteWidget from "@/components/widgets/WasteWidget";
+import QuickLinks from "@/components/widgets/QuickLinks";
 
 const services = [
   {
@@ -47,6 +54,15 @@ const services = [
   },
 ];
 
+function WidgetFallback() {
+  return (
+    <div className="rounded-xl border border-card-border bg-card-bg p-5 animate-pulse">
+      <div className="h-4 w-24 rounded bg-card-border mb-3" />
+      <div className="h-4 w-full rounded bg-card-border" />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen px-4 py-12 sm:px-6 lg:px-8">
@@ -71,6 +87,34 @@ export default function Home() {
           <Clock />
           <WeatherWidget />
         </div>
+
+        {/* Featured: News */}
+        <section className="mb-6">
+          <Suspense fallback={<WidgetFallback />}>
+            <NewsWidget />
+          </Suspense>
+        </section>
+
+        {/* Two-column grid */}
+        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="space-y-4">
+            <QuoteWidget />
+            <Suspense fallback={<WidgetFallback />}>
+              <HistoryWidget />
+            </Suspense>
+          </div>
+          <div className="space-y-4">
+            <FactWidget />
+            <Suspense fallback={<WidgetFallback />}>
+              <WasteWidget />
+            </Suspense>
+          </div>
+        </section>
+
+        {/* Quick links */}
+        <section className="mb-10">
+          <QuickLinks />
+        </section>
 
         {/* Services grid */}
         <section>
