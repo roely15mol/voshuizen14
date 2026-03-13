@@ -31,10 +31,11 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 ## Widgets
 
 ### NewsWidget (Featured)
-- Source: NOS RSS feed (`feeds.nos.nl/nosnieuwsalgemeen`)
+- Source: NOS RSS feed (`https://feeds.nos.nl/nosnieuwsalgemeen`)
 - Displays: 1-3 headlines, most recent prominently
 - Links to NOS article
-- Server-side fetch via API route, revalidate every hour
+- RSS XML parsed server-side using regex/string extraction (no DOMParser - that's browser-only)
+- Fetched via shared data-fetching function (not API route - see Data Flow)
 
 ### QuoteWidget
 - Source: Local `src/data/quotes.json` (~100 Dutch proverbs/quotes)
@@ -42,10 +43,11 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 - Display: Italicized quote text with attribution if applicable
 
 ### HistoryWidget
-- Source: Wikipedia "On this day" API (Dutch Wikipedia)
+- Source: Wikimedia REST API: `https://api.wikimedia.org/feed/v1/wikipedia/nl/onthisday/events/{MM}/{DD}`
 - Displays: 1-2 historical events for today's date
-- Fallback: Shows a fact from local data if API fails
-- Server-side fetch via API route, revalidate every hour
+- Note: Dutch Wikipedia coverage for "on this day" can be sparse on many dates
+- Fallback: Shows a fact from local data if API fails or returns no results (expected for many dates)
+- Fetched via shared data-fetching function (see Data Flow)
 
 ### FactWidget
 - Source: Local `src/data/facts.json` (~365 fun facts, one per day)
@@ -53,11 +55,12 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 - Display: Short fun fact text
 
 ### WasteWidget
-- Source: `mijnafvalwijzer.nl` API for Voshuizen 14, Lieren, Apeldoorn
+- Source: `mijnafvalwijzer.nl` API using postal code + house number
+- Endpoint: `https://api.mijnafvalwijzer.nl/webservices/appsinput/?postcode=XXXX&huisnummer=14` (postal code to be configured, verify if free API key is needed)
 - Displays: Next collection date + waste type
 - Color coding: Green (GFT), Grey (Restafval), Blue (Papier), Orange (PMD)
 - Special state: "Vandaag aan de straat!" when collection is today
-- Server-side fetch via API route, revalidate every hour
+- Fetched via shared data-fetching function (see Data Flow)
 
 ### QuickLinks
 - Hardcoded links with icons
@@ -73,10 +76,10 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 - `src/components/widgets/WasteWidget.tsx`
 - `src/components/widgets/QuickLinks.tsx`
 
-### New API routes
-- `src/app/api/news/route.ts` - Parses NOS RSS feed
-- `src/app/api/waste/route.ts` - Fetches waste calendar for address
-- `src/app/api/history/route.ts` - Fetches Wikipedia "on this day"
+### New data-fetching functions
+- `src/lib/news.ts` - Fetches and parses NOS RSS feed
+- `src/lib/waste.ts` - Fetches waste calendar from mijnafvalwijzer
+- `src/lib/history.ts` - Fetches Wikipedia "on this day" events
 
 ### New data files
 - `src/data/quotes.json` - Dutch proverbs and quotes
@@ -87,11 +90,15 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 
 ## Data Flow
 
-1. `page.tsx` is a Server Component
-2. Server-side fetches to API routes with `revalidate: 3600` (1 hour)
-3. API routes proxy to external services (NOS RSS, mijnafvalwijzer, Wikipedia)
-4. Local JSON data (quotes, facts) imported directly
-5. Clock and weather remain Client Components (need browser APIs)
+1. `page.tsx` is an async Server Component
+2. Data-fetching logic lives in `src/lib/` as async functions (e.g., `fetchNews()`, `fetchWaste()`, `fetchHistory()`)
+3. `page.tsx` calls these functions directly (not via API routes — calling own API routes from Server Components is a Next.js anti-pattern)
+4. Each fetch uses `next: { revalidate: 3600 }` for 1-hour caching
+5. Local JSON data (quotes, facts) imported directly as modules
+6. Clock and weather remain Client Components (need browser APIs)
+7. JSON data files are arrays; selection uses `array[dayOfYear % array.length]`
+
+Note: API routes are removed from the design. All data fetching happens server-side in `src/lib/`.
 
 ## Styling
 
@@ -111,4 +118,4 @@ Responsive: On mobile the two-column grid stacks vertically. Featured card and q
 
 ## External Dependencies
 
-None. No new npm packages required. RSS parsing done with built-in DOMParser/fetch. All APIs are free and keyless.
+None. No new npm packages required. RSS parsing done with regex/string extraction server-side. All APIs are free (mijnafvalwijzer may need a free API key — to be verified during implementation).
