@@ -32,7 +32,7 @@ export default function LandingFooter() {
 
           {/* Copyright */}
           <p className="text-warm-800/15 text-[0.6rem] tracking-[0.2em] uppercase mt-8">
-            &copy; {year}
+            &copy; {year} &middot; Lieren
           </p>
         </div>
       </div>
