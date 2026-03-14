@@ -53,17 +53,17 @@ export function ServiceCard({ name, href, icon, active }: ServiceCardProps) {
         rel="noopener noreferrer"
         className="glass-card p-3 text-center link-lift cursor-pointer"
       >
-        <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/20 text-accent">
+        <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
           {iconElement}
         </div>
-        <p className="text-xs font-medium">{name}</p>
+        <p className="text-xs font-medium text-foreground">{name}</p>
       </a>
     );
   }
 
   return (
     <div className="service-card-inactive p-3 cursor-default text-center">
-      <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent/70">
+      <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-foreground/5 text-foreground/40">
         {iconElement}
       </div>
       <p className="text-xs font-medium">{name}</p>

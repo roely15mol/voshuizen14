@@ -33,25 +33,25 @@ function WidgetFallback() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
 
         {/* Header */}
-        <header className="mb-10 text-center animate-entrance animate-entrance-1">
-          <h1 className="font-display text-6xl sm:text-8xl font-bold tracking-tight mb-1">
+        <header className="mb-12 text-center animate-entrance animate-entrance-1">
+          <h1 className="font-display text-6xl sm:text-8xl font-light tracking-tight mb-1">
             Voshuizen{" "}
-            <span className="number-glow">14</span>
+            <span className="number-highlight font-medium">14</span>
           </h1>
-          <p className="text-muted text-xs tracking-[0.3em] uppercase mt-2">
+          <p className="text-muted text-xs tracking-[0.3em] uppercase mt-3">
             Lieren &middot; Welkom thuis
           </p>
         </header>
 
         {/* Info bar */}
-        <div className="mb-10 animate-entrance animate-entrance-2">
-          <div className="flex items-center justify-center gap-6 text-sm text-muted/80">
+        <div className="mb-12 animate-entrance animate-entrance-2">
+          <div className="flex items-center justify-center gap-6 text-sm text-muted">
             <Clock />
-            <span className="text-accent/30">|</span>
+            <span className="text-card-border">|</span>
             <WeatherWidget />
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function Home() {
         </section>
 
         {/* Two-column grid */}
-        <section className="mb-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <section className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="space-y-5">
             <div className="animate-entrance animate-entrance-4">
               <QuoteWidget />
@@ -92,8 +92,8 @@ export default function Home() {
           <QuickLinks />
         </section>
 
-        {/* Golden line */}
-        <div className="golden-line mb-8 animate-entrance animate-entrance-7" />
+        {/* Divider */}
+        <div className="golden-line mb-10 animate-entrance animate-entrance-7" />
 
         {/* Active services */}
         <section className="animate-entrance animate-entrance-7 mb-10">

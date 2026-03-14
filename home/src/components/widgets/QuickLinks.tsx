@@ -46,7 +46,7 @@ export default function QuickLinks() {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-lift inline-flex items-center gap-2 rounded-full bg-white/[0.04] border border-white/[0.06] px-5 py-2.5 text-sm text-foreground/70 transition-all hover:text-accent"
+          className="link-lift inline-flex items-center gap-2 rounded-full bg-surface border border-card-border px-5 py-2.5 text-sm text-foreground/60 transition-all hover:text-accent"
         >
           {link.icon}
           {link.label}
