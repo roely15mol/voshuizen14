@@ -49,8 +49,8 @@ const jsonLd = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 52.1833,
-        longitude: 5.9833,
+        latitude: 52.1619,
+        longitude: 5.9877,
       },
     },
     {

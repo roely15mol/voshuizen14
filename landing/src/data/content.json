@@ -20,11 +20,11 @@
   "localArea": [
     {
       "name": "Beekbergerwoud",
-      "description": "Een van de weinige oerbossen van Nederland, vlakbij Lieren.",
+      "description": "Hier lag ooit het laatste oerbos van Nederland. Natuurmonumenten werkt aan het herstel van dit bijzondere bos.",
       "photo": "/photos/beekbergerwoud.jpg"
     },
     {
-      "name": "Lierense Velden",
+      "name": "Asselse Heide",
       "description": "Uitgestrekte heidevelden die in het najaar prachtig paars kleuren.",
       "photo": "/photos/lierense-velden.jpg"
     },
@@ -40,7 +40,7 @@
     },
     {
       "name": "Apenheul",
-      "description": "Uniek primatenpark waar apen vrij rondlopen tussen de bezoekers.",
+      "description": "Uniek primatenpark waar verschillende apensoorten vrij rondlopen tussen de bezoekers.",
       "photo": "/photos/apenheul.jpg"
     }
   ],
