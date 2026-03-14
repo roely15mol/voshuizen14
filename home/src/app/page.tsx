@@ -118,7 +118,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="mt-20 pb-8 text-center">
           <p className="text-[0.55rem] text-muted/30 tracking-[0.3em] uppercase">
-            Voshuizen 14
+            Voshuizen 14 &middot; Lieren
           </p>
         </footer>
       </div>
