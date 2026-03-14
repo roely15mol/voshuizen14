@@ -10,7 +10,7 @@ import WasteWidget from "@/components/widgets/WasteWidget";
 import QuickLinks from "@/components/widgets/QuickLinks";
 
 const services = [
-  { name: "Foto's", description: "Familiefoto's en herinneringen", href: "https://fotos.voshuizen14.nl", icon: "camera", active: false },
+  { name: "Foto's", description: "Familiefoto's en herinneringen", href: "https://fotos.voshuizen14.nl", icon: "camera", active: true },
   { name: "Recepten", description: "Onze favoriete recepten", href: "https://recepten.voshuizen14.nl", icon: "book", active: false },
   { name: "Bestanden", description: "Gedeelde bestanden", href: "https://bestanden.voshuizen14.nl", icon: "folder", active: false },
   { name: "Media", description: "Films en series", href: "https://media.voshuizen14.nl", icon: "play", active: false },
