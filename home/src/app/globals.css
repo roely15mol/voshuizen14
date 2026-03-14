@@ -78,41 +78,7 @@ body::after {
   transform: translateY(-2px);
 }
 
-/* ─── News hero ────────────────────────────────── */
-
-.news-hero {
-  background: linear-gradient(135deg, #3d3427, #4a3d2e);
-  border: 1px solid rgba(92, 74, 58, 0.2);
-  border-radius: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  color: #f5f0e8;
-}
-
-.news-hero::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, var(--news-accent), #6b3a1e, transparent);
-}
-
-.news-hero::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(139, 74, 46, 0.08), transparent 70%);
-  pointer-events: none;
-}
-
-.news-hero a:hover h2 {
-  color: #d4a574 !important;
-}
+/* ─── News accent ──────────────────────────────── */
 
 /* ─── Quote card ───────────────────────────────── */
 
