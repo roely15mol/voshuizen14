@@ -42,8 +42,24 @@ const icons: Record<string, React.ReactNode> = {
   ),
 };
 
-export function ServiceCard({ name, icon }: ServiceCardProps) {
+export function ServiceCard({ name, href, icon, active }: ServiceCardProps) {
   const iconElement = icons[icon] || icons.activity;
+
+  if (active) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="glass-card p-3 text-center link-lift cursor-pointer"
+      >
+        <div className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/20 text-accent">
+          {iconElement}
+        </div>
+        <p className="text-xs font-medium">{name}</p>
+      </a>
+    );
+  }
 
   return (
     <div className="service-card-inactive p-3 cursor-default text-center">
