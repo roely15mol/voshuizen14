@@ -2,6 +2,8 @@
 
 # dependencies
 node_modules
+home/node_modules/
+landing/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -15,6 +17,8 @@ node_modules
 
 # next.js
 .next/
+home/.next/
+landing/.next/
 /out/
 
 # production
@@ -32,6 +36,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+home/.env*.local
+landing/.env*.local
 
 # vercel
 .vercel
