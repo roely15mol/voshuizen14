@@ -17,6 +17,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Voshuizen 14",
   description: "Welkom bij Voshuizen 14",
+  robots: "noindex, nofollow",
   icons: {
     icon: "/favicon.ico",
   },
