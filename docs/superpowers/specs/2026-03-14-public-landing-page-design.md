@@ -48,7 +48,7 @@ Initial photography: stock Unsplash images of the Veluwe area. Designed for easy
 - No personal details exposed beyond the contact email address
 
 ### 6. Footer
-- Subtle link to home.voshuizen14.nl ("Bewoner? Ga naar het dashboard")
+- Subtle link to /home ("Bewoner? Ga naar het dashboard")
 - Copyright notice
 - Small seasonal greeting
 
@@ -76,27 +76,27 @@ Each season defines:
 
 ## Technical Architecture
 
-### Subdomain Routing
-Single Next.js application serving both subdomains via middleware:
-- `voshuizen14.nl` / `www.voshuizen14.nl` → public landing page
-- `home.voshuizen14.nl` → existing family dashboard
+### Folder-Based Routing
+Single Next.js application with path-based routing. Both pages live in the same repo, deployable as one app or split later via Coolify:
+- `/` → public landing page (`src/app/landingpage/`)
+- `/home` → family dashboard (`src/app/home/`)
 
-Next.js middleware reads the `Host` header and routes to the appropriate page tree.
+The root `page.tsx` becomes the landing page. The current dashboard moves to `/home`. Subdomain routing (voshuizen14.nl → landing, home.voshuizen14.nl → dashboard) can be added later via middleware or Coolify reverse proxy — the folder structure supports both approaches.
 
 ### File Structure
 ```
 src/
   app/
-    (public)/          # Public landing page routes
-      page.tsx         # Main landing page
-      layout.tsx       # Public layout (different from dashboard)
-    (dashboard)/       # Existing family dashboard (moved here)
-      page.tsx         # Current dashboard page
-      layout.tsx       # Dashboard layout
-    layout.tsx         # Root layout (shared)
-    middleware.ts      # Subdomain routing
+    page.tsx           # Root — renders landing page
+    layout.tsx         # Root layout (shared fonts, base styles)
+    landingpage/       # Landing page components and layout
+      LandingPage.tsx  # Main landing page component
+      layout.tsx       # Landing page layout (photo-forward styling)
+    home/              # Family dashboard (moved from current root)
+      page.tsx         # Dashboard page (current page.tsx content)
+      layout.tsx       # Dashboard layout (current dark luxury styling)
   components/
-    public/            # Public page components
+    landing/           # Landing page components
       Hero.tsx
       Welcome.tsx
       Location.tsx
@@ -125,13 +125,13 @@ src/
 - Links to Google Maps with the address pre-filled for directions
 
 ### Local Development
-- Use `NEXT_PUBLIC_HOST_OVERRIDE` env var to test subdomain routing locally
-- Default: `public` or `dashboard` to force a specific view without hosts file changes
-- Middleware checks this env var before the Host header in development mode
+- Landing page at `localhost:3000/`
+- Dashboard at `localhost:3000/home`
+- No subdomain setup needed for local development
 
-### Dynamic robots.txt
-- Served via a dynamic API route that checks the Host header
-- Returns different rules per subdomain (public: allow all, dashboard: noindex)
+### robots.txt
+- Static robots.txt allowing crawling of the landing page
+- `/home` path disallowed in robots.txt to keep dashboard private
 
 ### SEO & Google Maps
 
@@ -150,7 +150,8 @@ src/
 - Google My Business listing (manual step outside the codebase) to create the Maps pin
 
 **Dashboard Privacy:**
-- `home.voshuizen14.nl` gets `X-Robots-Tag: noindex` header via middleware
+- `/home` disallowed in robots.txt
+- `/home` page gets `noindex` meta tag
 - Not included in sitemap
 
 ### Contact
