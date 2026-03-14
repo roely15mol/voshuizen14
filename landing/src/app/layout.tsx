@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant, Outfit } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const dmSans = DM_Sans({
+const outfit = Outfit({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" className="scroll-smooth">
       <head>
         <script
           type="application/ld+json"
@@ -75,7 +75,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${playfair.variable} ${dmSans.variable} antialiased`}
+        className={`${cormorant.variable} ${outfit.variable} antialiased`}
       >
         {children}
       </body>

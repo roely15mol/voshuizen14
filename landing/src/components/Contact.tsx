@@ -1,21 +1,34 @@
 import content from "@/data/content.json";
+import { getCurrentSeason } from "@/lib/seasons";
 
 export default function Contact() {
+  const { data: season } = getCurrentSeason();
+
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="py-28 sm:py-36 px-6 bg-warm-100/50">
       <div className="max-w-xl mx-auto text-center">
-        <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-semibold text-gray-900 mb-6">
+        {/* Decorative element */}
+        <div
+          className="w-px h-12 mx-auto mb-10"
+          style={{ background: `linear-gradient(180deg, transparent, ${season.accent})` }}
+        />
+
+        <p className="label-sm text-bark/40 mb-4">
+          Neem contact op
+        </p>
+        <h2 className="heading-lg text-4xl sm:text-5xl text-warm-900 mb-6">
           Contact
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-warm-800/50 mb-10 font-light">
           Neem gerust contact met ons op.
         </p>
+
         <a
           href={`mailto:${content.contact.email}`}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+          className="inline-flex items-center gap-3 px-8 py-4 border border-warm-800 text-warm-800 rounded-full text-sm font-medium hover:bg-warm-800 hover:text-cream transition-all duration-300 group"
         >
           <svg
-            className="w-4 h-4"
+            className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}

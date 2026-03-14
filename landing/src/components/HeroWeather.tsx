@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export function HeroWeather() {
+export function HeroWeather({ accent }: { accent: string }) {
   const [weather, setWeather] = useState<{ temp: number; desc: string } | null>(null);
 
   useEffect(() => {
@@ -21,8 +21,12 @@ export function HeroWeather() {
   if (!weather) return null;
 
   return (
-    <p className="text-gray-400 text-xs mt-3">
-      {weather.temp}&deg;C &middot; {weather.desc}
-    </p>
+    <div className="flex items-center justify-center gap-3 text-white/40">
+      <span className="w-8 h-px" style={{ background: accent, opacity: 0.4 }} />
+      <p className="text-xs tracking-wide">
+        {weather.temp}&deg;C &middot; {weather.desc}
+      </p>
+      <span className="w-8 h-px" style={{ background: accent, opacity: 0.4 }} />
+    </div>
   );
 }

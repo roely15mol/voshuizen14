@@ -9,33 +9,59 @@ export default function Hero() {
       className="hero-section"
       style={{ backgroundImage: `url(${season.heroPhoto})` }}
     >
-      <div className="card-overlay text-center max-w-lg mx-4 animate-fade-up">
-        <h1
-          className="font-[family-name:var(--font-display)] text-5xl sm:text-7xl font-bold tracking-tight text-gray-900 mb-2"
-        >
-          Voshuizen{" "}
-          <span style={{ color: season.accent }}>14</span>
+      <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
+        {/* Thin decorative line */}
+        <div
+          className="w-px h-16 mx-auto mb-8 animate-fade-in delay-1"
+          style={{ background: `linear-gradient(180deg, transparent, ${season.accent})` }}
+        />
+
+        {/* Season label */}
+        <p className="label-sm text-white/60 mb-6 animate-fade-up delay-1">
+          {season.greeting}
+        </p>
+
+        {/* Main title */}
+        <h1 className="heading-xl text-white text-7xl sm:text-9xl mb-4 animate-fade-up delay-2">
+          Voshuizen
+          <span
+            className="block text-[0.6em] font-light tracking-[0.1em]"
+            style={{ color: season.accent }}
+          >
+            14
+          </span>
         </h1>
-        <p className="text-gray-500 text-sm tracking-[0.3em] uppercase mt-2">
+
+        {/* Subtitle */}
+        <p className="label-sm text-white/50 mb-4 animate-fade-up delay-3">
           Lieren &middot; Veluwe
         </p>
-        <HeroWeather />
-        <p className="text-gray-400 text-xs mt-2">{season.greeting}</p>
+
+        {/* Weather */}
+        <div className="animate-fade-up delay-4">
+          <HeroWeather accent={season.accent} />
+        </div>
+
+        {/* Bottom decorative line */}
+        <div
+          className="w-px h-12 mx-auto mt-8 animate-fade-in delay-5"
+          style={{ background: `linear-gradient(180deg, ${season.accent}, transparent)` }}
+        />
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 scroll-indicator">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 scroll-indicator">
         <svg
-          className="w-6 h-6 text-white/70"
+          className="w-5 h-5 text-white/40"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          strokeWidth={1}
           stroke="currentColor"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+            d="m19.5 8.25-7.5 7.5-7.5-7.5"
           />
         </svg>
       </div>
