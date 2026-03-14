@@ -13,7 +13,7 @@ export function WeatherWidget() {
 
   useEffect(() => {
     // Using wttr.in free API - no key needed
-    fetch("https://wttr.in/Netherlands?format=j1")
+    fetch("https://wttr.in/Lieren,Netherlands?format=j1")
       .then((res) => res.json())
       .then((data) => {
         const current = data.current_condition[0];
