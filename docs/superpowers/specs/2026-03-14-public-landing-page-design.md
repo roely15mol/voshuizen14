@@ -76,42 +76,43 @@ Each season defines:
 
 ## Technical Architecture
 
-### Folder-Based Routing
-Single Next.js application with path-based routing. Both pages live in the same repo, deployable as one app or split later via Coolify:
-- `/` → public landing page (`src/app/landingpage/`)
-- `/home` → family dashboard (`src/app/home/`)
+### Separate Sites in One Repo
+Two fully independent sites sharing one Next.js repo. Each has its own layout, CSS, and components — no shared styles between them. Deployable as one app with path routing, or as separate Coolify services later.
 
-The root `page.tsx` becomes the landing page. The current dashboard moves to `/home`. Subdomain routing (voshuizen14.nl → landing, home.voshuizen14.nl → dashboard) can be added later via middleware or Coolify reverse proxy — the folder structure supports both approaches.
+- `/` → public landing page (new, photo-forward)
+- `/home` → family dashboard (existing, dark luxury — moved from root)
+
+The landing page and dashboard are visually and functionally separate. The root layout is minimal (fonts only), and each site has its own nested layout with its own CSS.
 
 ### File Structure
 ```
 src/
   app/
-    page.tsx           # Root — renders landing page
-    layout.tsx         # Root layout (shared fonts, base styles)
-    landingpage/       # Landing page components and layout
-      LandingPage.tsx  # Main landing page component
-      layout.tsx       # Landing page layout (photo-forward styling)
-    home/              # Family dashboard (moved from current root)
-      page.tsx         # Dashboard page (current page.tsx content)
-      layout.tsx       # Dashboard layout (current dark luxury styling)
+    page.tsx              # Root — renders landing page
+    layout.tsx            # Root layout (minimal: fonts, lang, base)
+    globals.css           # Minimal shared reset only
+    landing.css           # Landing page styles (photo-forward theme)
+    home/                 # Family dashboard (moved from current root)
+      page.tsx            # Dashboard page (current page.tsx content)
+      layout.tsx          # Dashboard layout, imports dashboard.css
+      dashboard.css       # Current globals.css styles (dark luxury)
   components/
-    landing/           # Landing page components
+    landing/              # Landing page components
       Hero.tsx
       Welcome.tsx
       Location.tsx
       LocalArea.tsx
       Contact.tsx
-      Footer.tsx
-    widgets/           # Existing dashboard widgets (unchanged)
+      LandingFooter.tsx
+    widgets/              # Existing dashboard widgets (unchanged)
     ...
   lib/
-    seasons.ts         # Season detection + override logic
+    seasons.ts            # Season detection + override logic
     ...
   data/
-    seasons.json       # Seasonal content (photos, colors, tips)
-    content.json       # Customizable page content (welcome text, delivery instructions, etc.)
-    season-override.json # Manual season override
+    seasons.json          # Seasonal content (photos, colors, tips)
+    content.json          # Customizable page content (welcome text, etc.)
+    season-override.json  # Manual season override
     ...
 ```
 
