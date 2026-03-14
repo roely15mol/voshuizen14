@@ -16,7 +16,6 @@ const activeServices = [
 ];
 
 const comingSoon = [
-  { name: "Recepten", description: "Onze favoriete recepten", href: "https://recepten.voshuizen14.nl", icon: "book", active: false },
   { name: "Bestanden", description: "Gedeelde bestanden", href: "https://bestanden.voshuizen14.nl", icon: "folder", active: false },
   { name: "Media", description: "Films en series", href: "https://media.voshuizen14.nl", icon: "play", active: false },
 ];
