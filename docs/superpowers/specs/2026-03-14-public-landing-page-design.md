@@ -48,7 +48,7 @@ Initial photography: stock Unsplash images of the Veluwe area. Designed for easy
 - No personal details exposed beyond the contact email address
 
 ### 6. Footer
-- Subtle link to /home ("Bewoner? Ga naar het dashboard")
+- Subtle link to home.voshuizen14.nl ("Bewoner? Ga naar het dashboard")
 - Copyright notice
 - Small seasonal greeting
 
@@ -68,7 +68,7 @@ Each season defines:
 - Optional seasonal greeting in footer
 
 ### Manual Override
-- A JSON config file (`src/data/season-override.json`) to force a specific theme
+- A JSON config file (`landing/src/data/season-override.json`) to force a specific theme
 - Read dynamically at request time via `fs.readFileSync` in server components (not statically imported, so ISR picks up changes without rebuild)
 - Used for special occasions: Kerst, Koningsdag, Pasen, etc.
 - Override takes precedence over automatic season detection
@@ -76,65 +76,89 @@ Each season defines:
 
 ## Technical Architecture
 
-### Separate Sites in One Repo
-Two fully independent sites sharing one Next.js repo. Each has its own layout, CSS, and components — no shared styles between them. Deployable as one app with path routing, or as separate Coolify services later.
+### Two Standalone Projects in One Repo
+Two completely independent Next.js applications in the same git repo. Each is a full standalone project with its own `package.json`, `next.config.ts`, dependencies, and build. Deployed as separate Coolify containers pointing to different subfolders.
 
-- `/` → public landing page (new, photo-forward)
-- `/home` → family dashboard (existing, dark luxury — moved from root)
+- `landing/` → **voshuizen14.nl** — public landing page (new, photo-forward)
+- `home/` → **home.voshuizen14.nl** — family dashboard (existing code moved here)
 
-The landing page and dashboard are visually and functionally separate. The root layout is minimal (fonts only), and each site has its own nested layout with its own CSS.
+No shared code, no monorepo tooling. Just two Next.js projects side by side.
 
-### File Structure
+### Repository Structure
 ```
-src/
-  app/
-    page.tsx              # Root — renders landing page
-    layout.tsx            # Root layout (minimal: fonts, lang, base)
-    globals.css           # Minimal shared reset only
-    landing.css           # Landing page styles (photo-forward theme)
-    home/                 # Family dashboard (moved from current root)
-      page.tsx            # Dashboard page (current page.tsx content)
-      layout.tsx          # Dashboard layout, imports dashboard.css
-      dashboard.css       # Current globals.css styles (dark luxury)
-  components/
-    landing/              # Landing page components
-      Hero.tsx
-      Welcome.tsx
-      Location.tsx
-      LocalArea.tsx
-      Contact.tsx
-      LandingFooter.tsx
-    widgets/              # Existing dashboard widgets (unchanged)
-    ...
-  lib/
-    seasons.ts            # Season detection + override logic
-    ...
-  data/
-    seasons.json          # Seasonal content (photos, colors, tips)
-    content.json          # Customizable page content (welcome text, etc.)
-    season-override.json  # Manual season override
-    ...
+voshuizen14/
+  landing/                    # Public landing page — voshuizen14.nl
+    package.json
+    next.config.ts
+    src/
+      app/
+        page.tsx              # Landing page
+        layout.tsx            # Layout (photo-forward styling)
+        globals.css           # Landing page styles
+      components/
+        Hero.tsx
+        Welcome.tsx
+        Location.tsx
+        LocalArea.tsx
+        Contact.tsx
+        LandingFooter.tsx
+      lib/
+        seasons.ts            # Season detection + override logic
+      data/
+        seasons.json          # Seasonal content (photos, colors, tips)
+        content.json          # Customizable page content
+        season-override.json  # Manual season override
+    public/                   # Static assets (Unsplash photos, etc.)
+
+  home/                       # Family dashboard — home.voshuizen14.nl
+    package.json
+    next.config.ts
+    src/                      # Current project code moved here as-is
+      app/
+        page.tsx
+        layout.tsx
+        globals.css
+      components/
+        ServiceCard.tsx
+        WeatherWidget.tsx
+        Clock.tsx
+        widgets/
+          NewsWidget.tsx
+          QuoteWidget.tsx
+          HistoryWidget.tsx
+          FactWidget.tsx
+          WasteWidget.tsx
+          QuickLinks.tsx
+      lib/
+        news.ts
+        history.ts
+        waste.ts
+      data/
+        quotes.json
+        facts.json
+    public/
 ```
+
+### Coolify Deployment
+- Two separate Coolify services from the same git repo
+- Landing: base directory `landing/`, domain `voshuizen14.nl`
+- Dashboard: base directory `home/`, domain `home.voshuizen14.nl`
+- Each builds and runs independently
 
 ### Rendering Strategy
-- Public landing page: Static Site Generation with Incremental Static Regeneration (ISR)
-- Revalidate every 3600 seconds (1 hour) for weather data freshness
+- Landing page: Static Site Generation with ISR, revalidate every 3600 seconds (1 hour) for weather
 - Dashboard: unchanged (current rendering approach)
 
-### Google Maps Embed
-- Use a static Google Maps link (no API key required) rather than an embedded iframe
+### Google Maps
+- Static Google Maps link (no API key required) rather than an embedded iframe
 - Links to Google Maps with the address pre-filled for directions
 
 ### Local Development
-- Landing page at `localhost:3000/`
-- Dashboard at `localhost:3000/home`
-- No subdomain setup needed for local development
+- Landing: `cd landing && npm run dev` → `localhost:3000`
+- Dashboard: `cd home && npm run dev -- -p 3001` → `localhost:3001`
+- Fully independent, no conflicts
 
-### robots.txt
-- Static robots.txt allowing crawling of the landing page
-- `/home` path disallowed in robots.txt to keep dashboard private
-
-### SEO & Google Maps
+### SEO & Google Maps (landing only)
 
 **Structured Data (JSON-LD):**
 - `Schema.org/Place` with `PostalAddress` for the house
@@ -146,22 +170,19 @@ src/
 - Canonical URL
 
 **Discovery:**
-- `sitemap.xml` for the public pages only
-- `robots.txt` allowing public pages, disallowing dashboard
-- Google My Business listing (manual step outside the codebase) to create the Maps pin
+- `sitemap.xml` and `robots.txt` on landing site (allow all)
+- Google My Business listing (manual step) to create the Maps pin
 
 **Dashboard Privacy:**
-- `/home` disallowed in robots.txt
-- `/home` page gets `noindex` meta tag
-- Not included in sitemap
+- Dashboard at `home.voshuizen14.nl` gets `noindex` meta tag and `robots.txt` disallow
+- Not referenced in landing site's sitemap
 
 ### Contact
-- Static mailto link — no backend needed
-- No form, no API route, no spam concerns
+- Static mailto link on landing page — no backend needed
 
 ## Content Defaults
 
-Placeholder content ships with the initial build. All can be customized later by editing `src/data/content.json`.
+Placeholder content ships with the initial build. All can be customized later by editing `landing/src/data/content.json`.
 
 1. **Welcome text:** "Voshuizen 14 ligt aan de rand van de Veluwe, in het dorpje Lieren bij Apeldoorn. Omringd door bossen, heidevelden en stilte."
 2. **Delivery instructions:** "Pakketjes mogen bij de voordeur worden neergezet. Bij grote pakketten: bel aan."
