@@ -1,0 +1,50 @@
+{
+  "lente": {
+    "months": [3, 4, 5],
+    "heroPhoto": "/photos/seasons/lente.jpg",
+    "accent": "#8b9a6b",
+    "accentLight": "rgba(139, 154, 107, 0.1)",
+    "tip": "De Veluwe komt tot leven: bosanemonen bloeien en de eerste lammetjes verschijnen in de weilanden.",
+    "greeting": "Lente aan de Veluwe"
+  },
+  "zomer": {
+    "months": [6, 7, 8],
+    "heroPhoto": "/photos/seasons/zomer.jpg",
+    "accent": "#2d7d46",
+    "accentLight": "rgba(45, 125, 70, 0.1)",
+    "tip": "Wandel door de eindeloze bossen of fiets langs de sprengen. De langste dagen van het jaar.",
+    "greeting": "Zomer op de Veluwe"
+  },
+  "herfst": {
+    "months": [9, 10, 11],
+    "heroPhoto": "/photos/seasons/herfst.jpg",
+    "accent": "#c4722e",
+    "accentLight": "rgba(196, 114, 46, 0.1)",
+    "tip": "De heide kleurt paars, de bossen worden goud en de edelherten brullen op de Veluwe.",
+    "greeting": "Herfst op de Veluwe"
+  },
+  "winter": {
+    "months": [12, 1, 2],
+    "heroPhoto": "/photos/seasons/winter.jpg",
+    "accent": "#5a7d9a",
+    "accentLight": "rgba(90, 125, 154, 0.1)",
+    "tip": "Bevroren vennen, rijp op de heide en stilte in de bossen. De Veluwe op zijn mooist.",
+    "greeting": "Winter op de Veluwe"
+  },
+  "kerst": {
+    "months": [],
+    "heroPhoto": "/photos/seasons/winter.jpg",
+    "accent": "#8b1a1a",
+    "accentLight": "rgba(139, 26, 26, 0.1)",
+    "tip": "Fijne feestdagen vanuit Voshuizen 14!",
+    "greeting": "Fijne Kerst"
+  },
+  "koningsdag": {
+    "months": [],
+    "heroPhoto": "/photos/seasons/lente.jpg",
+    "accent": "#ff6600",
+    "accentLight": "rgba(255, 102, 0, 0.1)",
+    "tip": "Lang leve de Koning!",
+    "greeting": "Gelukkige Koningsdag"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "welcome": {
+    "title": "Welkom",
+    "text": "Voshuizen 14 ligt aan de rand van de Veluwe, in het dorpje Lieren bij Apeldoorn. Omringd door bossen, heidevelden en stilte."
+  },
+  "address": {
+    "street": "Voshuizen 14",
+    "postalCode": "7364 BP",
+    "city": "Lieren",
+    "municipality": "Apeldoorn",
+    "province": "Gelderland",
+    "mapsQuery": "Voshuizen+14,+7364+BP+Lieren"
+  },
+  "delivery": {
+    "text": "Pakketjes mogen bij de voordeur worden neergezet. Bij grote pakketten: bel aan."
+  },
+  "contact": {
+    "email": "info@voshuizen14.nl"
+  },
+  "localArea": [
+    {
+      "name": "Beekbergerwoud",
+      "description": "Een van de weinige oerbossen van Nederland, vlakbij Lieren.",
+      "photo": "/photos/beekbergerwoud.jpg"
+    },
+    {
+      "name": "Lierense Velden",
+      "description": "Uitgestrekte heidevelden die in het najaar prachtig paars kleuren.",
+      "photo": "/photos/lierense-velden.jpg"
+    },
+    {
+      "name": "Loenen",
+      "description": "Pittoresk dorp aan de rand van de Veluwe met historische watermolens.",
+      "photo": "/photos/loenen.jpg"
+    },
+    {
+      "name": "Paleis Het Loo",
+      "description": "Koninklijk paleis met prachtige tuinen in Apeldoorn.",
+      "photo": "/photos/paleis-het-loo.jpg"
+    },
+    {
+      "name": "Apenheul",
+      "description": "Uniek primatenpark waar apen vrij rondlopen tussen de bezoekers.",
+      "photo": "/photos/apenheul.jpg"
+    }
+  ],
+  "dashboard": {
+    "url": "https://home.voshuizen14.nl",
+    "label": "Bewoner? Ga naar het dashboard"
+  }
+}
