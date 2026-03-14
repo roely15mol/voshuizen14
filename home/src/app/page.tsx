@@ -9,8 +9,11 @@ import FactWidget from "@/components/widgets/FactWidget";
 import WasteWidget from "@/components/widgets/WasteWidget";
 import QuickLinks from "@/components/widgets/QuickLinks";
 
-const services = [
+const activeServices = [
   { name: "Foto's", description: "Familiefoto's en herinneringen", href: "https://fotos.voshuizen14.nl", icon: "camera", active: true },
+];
+
+const comingSoon = [
   { name: "Recepten", description: "Onze favoriete recepten", href: "https://recepten.voshuizen14.nl", icon: "book", active: false },
   { name: "Bestanden", description: "Gedeelde bestanden", href: "https://bestanden.voshuizen14.nl", icon: "folder", active: false },
   { name: "Media", description: "Films en series", href: "https://media.voshuizen14.nl", icon: "play", active: false },
@@ -92,11 +95,21 @@ export default function Home() {
         {/* Golden line */}
         <div className="golden-line mb-8 animate-entrance animate-entrance-7" />
 
-        {/* Services grid */}
+        {/* Active services */}
+        <section className="animate-entrance animate-entrance-7 mb-10">
+          <h2 className="widget-label text-center mb-6">Services</h2>
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+            {activeServices.map((service) => (
+              <ServiceCard key={service.name} {...service} />
+            ))}
+          </div>
+        </section>
+
+        {/* Coming soon */}
         <section className="animate-entrance animate-entrance-7">
           <h2 className="widget-label text-center mb-6">Binnenkort beschikbaar</h2>
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-            {services.map((service) => (
+            {comingSoon.map((service) => (
               <ServiceCard key={service.name} {...service} />
             ))}
           </div>
