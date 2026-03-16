@@ -12,7 +12,7 @@ import QuickLinks from "@/components/widgets/QuickLinks";
 const activeServices = [
   { name: "Foto's", description: "Familiefoto's en herinneringen", href: "https://fotos.voshuizen14.nl", icon: "camera", active: true },
   { name: "Wachtwoorden", description: "Veilig wachtwoordbeheer", href: "https://vault.voshuizen14.nl", icon: "shield", active: true },
-  { name: "Status", description: "Zijn alle diensten online?", href: "https://uptimekuma.molcloud.net/status/voshuizen-services", icon: "activity", active: true },
+  { name: "Status", description: "Zijn alle diensten online?", href: "https://status.molcloud.net/status/voshuizen", icon: "activity", active: true },
 ];
 
 const comingSoon = [
