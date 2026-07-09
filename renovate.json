@@ -5,13 +5,20 @@
   "automergeType": "pr",
   "platformAutomerge": true,
   "rebaseWhen": "behind-base-branch",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "automerge": true,
-    "labels": ["security"]
-  }
+  "prConcurrentLimit": 5,
+  "transitiveRemediation": true,
+  "lockFileMaintenance": { "enabled": true, "automerge": true },
+  "vulnerabilityAlerts": { "enabled": true, "automerge": true, "labels": ["security"] },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true,
+      "labels": ["major"]
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor & patch"
+    }
+  ]
 }
