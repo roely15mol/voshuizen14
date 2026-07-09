@@ -22,5 +22,14 @@
     "eslint": "^10.0.0",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4"
+  },
+  "overrides": {
+    "@babel/core": "^7.29.6",
+    "flatted": "^3.4.2",
+    "postcss": "^8.5.10",
+    "picomatch": {
+      "^2.3.0": "^2.3.2",
+      "^4.0.0": "^4.0.4"
+    }
   }
 }
