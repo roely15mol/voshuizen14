@@ -1,2 +1,2 @@
 [phases.install]
-cmds = ["NPM_CONFIG_PRODUCTION=false npm ci --include=dev"]
+cmds = ["NPM_CONFIG_PRODUCTION=false npm install --include=dev --legacy-peer-deps"]
