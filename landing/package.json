@@ -19,13 +19,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "eslint": "^10.0.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4"
   },
   "overrides": {
     "@babel/core": "^8.0.0",
+    "brace-expansion": "^5.0.9",
     "flatted": "^3.4.2",
-    "postcss": "^8.5.10"
+    "minimatch": "^10.2.6",
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3"
   }
 }
