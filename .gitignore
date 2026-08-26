@@ -49,3 +49,4 @@ landing/.env*.local
 *.tsbuildinfo
 next-env.d.ts
 *.png
+out/
