@@ -45,6 +45,9 @@ landing/.env*.local
 # superpowers brainstorming
 .superpowers/
 
+# mimosa security scan artifacts
+.mimosa/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
