@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { WeatherWidget } from "@/components/WeatherWidget";
 import { Clock } from "@/components/Clock";
@@ -20,18 +19,7 @@ const comingSoon = [
   { name: "Media", description: "Films en series", href: "https://media.voshuizen14.nl", icon: "play", active: false },
 ];
 
-function WidgetFallback() {
-  return (
-    <div className="glass-card p-6 animate-pulse">
-      <div className="h-3 w-16 rounded-full bg-accent/10 mb-5" />
-      <div className="h-5 w-3/4 rounded-full bg-accent/5 mb-3" />
-      <div className="h-4 w-1/2 rounded-full bg-accent/5" />
-    </div>
-  );
-}
-
-export default function Home() {
-  return (
+export default function Home() {  return (
     <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
 
@@ -57,9 +45,7 @@ export default function Home() {
 
         {/* News Hero */}
         <section className="mb-8 animate-hero animate-entrance-3">
-          <Suspense fallback={<WidgetFallback />}>
-            <NewsWidget />
-          </Suspense>
+          <NewsWidget />
         </section>
 
         {/* Two-column grid */}
@@ -69,9 +55,7 @@ export default function Home() {
               <QuoteWidget />
             </div>
             <div className="animate-entrance animate-entrance-5">
-              <Suspense fallback={<WidgetFallback />}>
-                <HistoryWidget />
-              </Suspense>
+              <HistoryWidget />
             </div>
           </div>
           <div className="space-y-5">
@@ -79,9 +63,7 @@ export default function Home() {
               <FactWidget />
             </div>
             <div className="animate-entrance animate-entrance-5">
-              <Suspense fallback={<WidgetFallback />}>
-                <WasteWidget />
-              </Suspense>
+              <WasteWidget />
             </div>
           </div>
         </section>

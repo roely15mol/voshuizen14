@@ -18,6 +18,7 @@
     "typescript": "^5.9.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260829.1",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9.0.0",
     "eslint-config-next": "16.3.3",

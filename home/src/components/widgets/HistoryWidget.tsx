@@ -1,4 +1,8 @@
-import { fetchHistory } from "@/lib/history";
+"use client";
+
+import { useEffect, useState } from "react";
+import WidgetFallback from "@/components/WidgetFallback";
+import { fetchHistory, type HistoryEvent } from "@/lib/history";
 import facts from "@/data/facts.json";
 
 function getDayOfYear(): number {
@@ -8,8 +12,18 @@ function getDayOfYear(): number {
   return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-export default async function HistoryWidget() {
-  const events = await fetchHistory();
+export default function HistoryWidget() {
+  const [events, setEvents] = useState<HistoryEvent[] | null>(null);
+
+  useEffect(() => {
+    fetchHistory()
+      .then(setEvents)
+      .catch(() => setEvents([]));
+  }, []);
+
+  if (events === null) {
+    return <WidgetFallback />;
+  }
 
   if (events.length === 0) {
     const fallbackIndex = (getDayOfYear() + 180) % facts.length;

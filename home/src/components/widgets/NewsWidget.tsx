@@ -1,7 +1,27 @@
-import { fetchNews } from "@/lib/news";
+"use client";
 
-export default async function NewsWidget() {
-  const news = await fetchNews();
+import { useEffect, useState } from "react";
+import WidgetFallback from "@/components/WidgetFallback";
+
+export interface NewsItem {
+  title: string;
+  link: string;
+  pubDate: string;
+}
+
+export default function NewsWidget() {
+  const [news, setNews] = useState<NewsItem[] | null>(null);
+
+  useEffect(() => {
+    fetch("/api/news")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setNews(Array.isArray(data) ? data : []))
+      .catch(() => setNews([]));
+  }, []);
+
+  if (news === null) {
+    return <WidgetFallback />;
+  }
 
   if (news.length === 0) {
     return (

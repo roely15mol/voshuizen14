@@ -1,7 +1,22 @@
-import { fetchWaste, wasteLabels } from "@/lib/waste";
+"use client";
 
-export default async function WasteWidget() {
-  const waste = await fetchWaste();
+import { useEffect, useState } from "react";
+import WidgetFallback from "@/components/WidgetFallback";
+import { wasteLabels, type WasteCollection } from "@/lib/waste";
+
+export default function WasteWidget() {
+  const [waste, setWaste] = useState<WasteCollection | null | "error">("error");
+
+  useEffect(() => {
+    fetch("/api/waste")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setWaste(data))
+      .catch(() => setWaste(null));
+  }, []);
+
+  if (waste === "error") {
+    return <WidgetFallback />;
+  }
 
   if (!waste) {
     return (

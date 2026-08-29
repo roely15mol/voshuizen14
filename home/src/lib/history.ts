@@ -11,7 +11,6 @@ export async function fetchHistory(): Promise<HistoryEvent[]> {
 
     const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${mm}/${dd}`;
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
       headers: { Accept: "application/json" },
     });
 
