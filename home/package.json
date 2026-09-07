@@ -12,7 +12,7 @@
     "@types/node": "^24.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "next": "16.3.3",
+    "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "typescript": "^5.9.0"
@@ -21,7 +21,7 @@
     "@cloudflare/workers-types": "^5.20260829.1",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9.0.0",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.3.4",
     "tailwindcss": "^4"
   },
   "overrides": {
